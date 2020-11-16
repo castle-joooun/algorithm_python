@@ -4,7 +4,7 @@ def find_parent(parent, x):
     return parent[x]
 
 
-def uniom_parent(parent, a, b):
+def union_parent(parent, a, b):
     a = find_parent(parent, a)
     b = find_parent(parent, b)
 
@@ -29,12 +29,14 @@ for _ in range(e):
     edges.append((cost, a, b))
 
 edges.sort()
+last = 0
 
 for edge in edges:
     cost, a, b = edge
     # if it's not cycle, union
     if find_parent(parent, a) != find_parent(parent, b):
-        uniom_parent(parent, a, b)
+        union_parent(parent, a, b)
         result += cost
+        last = cost
 
-print(result)
+print(result - last)
