@@ -7,11 +7,11 @@ def find_parent(parent, x):
 def union_parent(parent, a, b):
     a = find_parent(parent, a)
     b = find_parent(parent, b)
-
     if a < b:
         parent[b] = a
     else:
         parent[a] = b
+
 
 # node, edge
 v, e = map(int, input().split())
@@ -29,7 +29,6 @@ for _ in range(e):
     edges.append((cost, a, b))
 
 edges.sort()
-last = 0
 
 for edge in edges:
     cost, a, b = edge
@@ -37,6 +36,5 @@ for edge in edges:
     if find_parent(parent, a) != find_parent(parent, b):
         union_parent(parent, a, b)
         result += cost
-        last = cost
 
-print(result - last)
+print(result)
