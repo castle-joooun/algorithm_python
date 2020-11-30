@@ -35,24 +35,23 @@ def solution(key, lock):
                 down.pop()
 
             # 오른쪽으로 밀기
-            for j in range(len(key) - 1):
+            for j in range(len(key)):
                 right = deque(down)
-                right[i] = deque(right[i])
-                right[i].appendleft(0)
-                right[i].pop()
-
-                if right == locks:
-                    return True
+                right[j] = deque(right[j])
+                right[j].appendleft(0)
+                right[j].pop()
+                right[j] = list(right[j])
 
             # 왼쪽으로 밀기
-            for j in range(len(key) - 1):
-                left = down
-                left[i] = deque(left)
-                left[i].append(0)
-                left[i].popleft()
+            for j in range(len(key)):
+                left = deque(down)
+                left[j] = deque(left[j])
+                left[j].append(0)
+                left[j].popleft()
+                left[j] = list(left[j])
 
-                if left == locks:
-                    return True
+            if left == locks or right == locks:
+                return True
 
         # 위로 올리기
         for i in range(len(key) - 1):
@@ -61,24 +60,23 @@ def solution(key, lock):
                 up.popleft()
 
             # 오른쪽으로 밀기
-            for j in range(len(key) - 1):
-                right = up
-                right[i] = deque(right[i])
-                right[i].appendleft(0)
-                right[i].pop()
-
-                if right == locks:
-                    return True
+            for j in range(len(key)):
+                right = deque(down)
+                right[j] = deque(right[j])
+                right[j].appendleft(0)
+                right[j].pop()
+                right[j] = list(right[j])
 
             # 왼쪽으로 밀기
-            for j in range(len(key) - 1):
-                left = up
-                left[i] = deque(left[i])
-                left[i].append(0)
-                left[i].popleft()
+            for j in range(len(key)):
+                left = deque(down)
+                left[j] = deque(left[j])
+                left[j].append(0)
+                left[j].popleft()
+                left[j] = list(left[j])
 
-                if left == locks:
-                    return True
+            if left == locks or right == locks:
+                return True
 
     return False
 
