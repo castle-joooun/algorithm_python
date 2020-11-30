@@ -35,16 +35,16 @@ def solution(key, lock):
                 down.pop()
 
             # 오른쪽으로 밀기
+            right = deque(down)
             for j in range(len(key)):
-                right = deque(down)
                 right[j] = deque(right[j])
                 right[j].appendleft(0)
                 right[j].pop()
                 right[j] = list(right[j])
 
             # 왼쪽으로 밀기
+            left = deque(down)
             for j in range(len(key)):
-                left = deque(down)
                 left[j] = deque(left[j])
                 left[j].append(0)
                 left[j].popleft()
@@ -60,16 +60,16 @@ def solution(key, lock):
                 up.popleft()
 
             # 오른쪽으로 밀기
+            right = deque(down)
             for j in range(len(key)):
-                right = deque(down)
                 right[j] = deque(right[j])
                 right[j].appendleft(0)
                 right[j].pop()
                 right[j] = list(right[j])
 
             # 왼쪽으로 밀기
+            left = deque(down)
             for j in range(len(key)):
-                left = deque(down)
                 left[j] = deque(left[j])
                 left[j].append(0)
                 left[j].popleft()
