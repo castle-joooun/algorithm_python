@@ -12,6 +12,6 @@ for x in right:
     sum_r += int(x)
 
 if sum_l == sum_r:
-    print('LUCKY')
+    print("LUCKY")
 else:
-    print('READY')
+    print("READY")
