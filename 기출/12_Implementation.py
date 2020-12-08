@@ -23,7 +23,7 @@ def solution(n, build_frame):
                 pass
         elif b == 0:
             # 기둥, 보를 삭제해줌
-
+            pass
 
 
     return answer
