@@ -6,7 +6,7 @@ def solution(s):
     cnt = 0
     str_len = ''
     str_num = 1
-    for i in range(1, len(s) // 2):
+    for i in range(1, len(s) // 2 + 1):
         check = 0
         if len(s) % i == 0:
             check = len(s) // i
