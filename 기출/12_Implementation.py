@@ -2,7 +2,7 @@ def solution(n, build_frame):
     answer = []
 
     # map
-    d = [[-1] * (n + 1) for _ in range(n + 1)]
+    d = [[-1] * (n + 2) for _ in range(n + 2)]
 
     for i in range(len(build_frame)):
         x = build_frame[i][0]
@@ -19,13 +19,13 @@ def solution(n, build_frame):
             if a == 0:
                 # 보는 한쪽끝부분이 기둥위에 있거나 또는 양족 끝 부분이 다른 보와 동시에 연결되어 있어야 함
                 # 보는 x축이 +1까지 범위
-                if (d[y][x - 1] == 0 and d[y][x + 1] == 0) or d[y - 1][x] == 1 or d[y - 1][x + 1] == 1:
+                if d[y - 1][x] == 1 or d[y - 1][x + 1] == 1 or (d[y][x - 1] == 0 and d[y][x + 1] == 0):
                     answer.append([x, y, a])
                     d[y][x] = a
             elif a == 1:
                 # 기둥은 바닥위에 있거나 보의 한족 끝부분 위에 있거나 또는 다른 기둥 위에 있어야 함
                 # 기둥은 y축이 +1까지 범위
-                if y == 0 or d[y - 1][x] == 1 or d[y][x - 1] == 0 or d[y][x] == 0:
+                if y == 0 or d[y][x] == 0 or d[y - 1][x] == 1 or d[y][x - 1] == 0:
                     answer.append([x, y, a])
                     d[y][x] = a
         elif b == 0:
@@ -35,3 +35,5 @@ def solution(n, build_frame):
                 answer.remove([x, y, a])
 
     return answer
+
+print(solution(5, [[1,0,0,1],[1,1,1,1],[2,1,0,1],[2,2,1,1],[5,0,0,1],[5,1,0,1],[4,2,1,1],[3,2,1,1]]))
