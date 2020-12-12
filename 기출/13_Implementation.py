@@ -31,10 +31,18 @@ def check_chicken(start, end, min, result):
 
     for i in range(start, end):
         result[i].append
-
         check_chicken(start + 1, end, min, result)
     return result
 
 
 check = [[] for _ in range(m)]
-check_chicken(0, m, min_arr, check)
+# ex) m = 3, min_arr = 5 -> 5개 중에서 3개를 고르는 것
+# (1,2,3), (1,2,4), (1,2,5) 이런식으로 값을 담음 -> 3! 값만큼 돌려야함
+# 값을 담은것을 기반으로 최솟값의 index 들을 골라서 총합을 계산
+# 계산한것들중 제일 작은값 return
+ii = 0
+while ii + 1 != m:
+    check_chicken(0, m, min_arr, check)
+    ii += 1
+
+print(min(check))
