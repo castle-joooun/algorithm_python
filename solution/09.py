@@ -16,3 +16,5 @@ def solution(s):
         compressed += str(count) + prev if count >= 2 else prev
         answer = min(answer, len(compressed))
     return answer
+
+print(solution('aabbaccc'))
