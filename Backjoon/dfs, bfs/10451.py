@@ -1,15 +1,20 @@
+from collections import deque
 import sys
 input = sys.stdin.readline
 
 
-def bfs(d, node, visited):
-    if visited[node] == check:
-        return True
-    elif visited[node] == -1:
-        visited[node] = check
-        bfs(d, d[node], visited)
-    else:
-        return False
+def bfs(visited, node):
+    queue = deque([node])
+
+    while queue:
+        next = d[queue.popleft()]
+        if visited[next] == check:
+            return True
+        elif visited[next] == -1:
+            visited[next] = check
+            queue.append(next)
+        else:
+            return False
 
 
 t = int(input())
@@ -24,8 +29,7 @@ for _ in range(t):
     check = 0
 
     for i in range(1, n + 1):
-        node = d[i]
-        if bfs(d, node, visited):
+        if bfs(visited, i):
             cnt += 1
             check += 1
 
