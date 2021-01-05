@@ -20,6 +20,15 @@ def dfs_mid(d, n):
                 stack.append(x)
 
 
+def dfs_mid_solv(n):
+    if n > 7:
+        return
+    else:
+        dfs_mid_solv(n * 2)
+        print(n)
+        dfs_mid_solv(n * 2 + 1)
+
+
 def dfs_back(d, n):
     visited[n] = True
     check = d[n]
