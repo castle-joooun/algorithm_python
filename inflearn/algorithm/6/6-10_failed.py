@@ -1,11 +1,7 @@
-import operator
-
-
 def dfs(check):
     global result
     if len(check) == m:
-        sort_check = sorted(check)
-        if tuple(sort_check) not in result:
+        if tuple(check[::-1]) not in result:
             result.add(tuple(check))
     else:
         for i in range(n):
@@ -19,7 +15,7 @@ d = [i for i in range(1, n + 1)]
 result = set([])
 dfs([])
 result = list(result)
-result.sort(key=lambda x:(x[i] for i in range(n)))
+result.sort(key=lambda x: (x[0], x[1]))
 
 for x in result:
     for xx in x:
