@@ -1,8 +1,28 @@
-def mixed_params(age, address, name="아이유", *args, **kwargs):
-    print("name=",end=""), print(name)
-    print("args=",end=""), print(args)
-    print("age=",end=""), print(age)
-    print("kwargs=",end=""), print(kwargs)
-    print("address=",end=""), print(address)
+class Database:
+    db = {}
 
-mixed_params(20, "seoul", "정우성", "01012341234", "male" ,mobile="01012341234")
+    def __init__(self, name, size):
+        self.name = name
+        self.size = size
+
+    def insert(self, field, value):
+        if len(self.db) < self.size:
+            self.db[field] = value
+
+    def select(self, field):
+        return self.db[field]
+
+    def update(self, field, value):
+        self.db[field] = value
+
+    def delete(self, field):
+        del self.db[field]
+
+
+db = Database("mysql", 3)
+db.insert("name", "정우성")
+db.insert("age", 35)
+db.insert("height", 185)
+
+print(db.select("name"))
+db.delete("name")
