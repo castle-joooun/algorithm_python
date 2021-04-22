@@ -1,12 +1,16 @@
 k = int(input())
+arr = list(map(int, input().split()))
 
+result = 0
+arr.sort()
 
-result = k // (10 ** (len(str(k)) - 1))
-k %= (10 ** (len(str(k)) - 1))
-
-while k != 0:
-    num = k // (10 ** (len(str(k)) - 1))
-    k %= (10 ** (len(str(k)) - 1))
-    result = max(result + num, result * num)
+while len(arr) != 0:
+    check = arr.pop()
+    for i in range(check - 1):
+        if len(arr) == 0:
+            break
+        arr.pop()
+    else:
+        result += 1
 
 print(result)
