@@ -11,7 +11,7 @@ def solution(key, lock):
 
     check = True
     while check:
-        copy_lock = copy.deepcopy(new_lcok)
+        copy_lock = copy.deepcopy(new_lock)
         for i in range(1, len(key) * 2):
             for j in range(1, len(key) * 2):
                 copy_lock[i][j] += key[i][j]
