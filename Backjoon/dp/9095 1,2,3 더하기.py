@@ -1,16 +1,19 @@
+n = int(input())
+cache = [0] * 11
+cache[1] = 1
+cache[2] = 2
+cache[3] = 4
+
+
 def sol(n):
-    dp = [0 for _ in range(n + 1)]
-    dp[1] = 1
-    dp[2] = 2
-    dp[3] = 4
+    if cache[n] != 0:
+        return cache[n]
 
     for i in range(4, n + 1):
-        dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+        cache[i] = cache[i - 1] + cache[i - 2] + cache[i - 3]
 
-    return dp[n]
+    return cache[n]
 
-
-n = int(input())
-for i in range(n):
+for i in range(1, n + 1):
     k = int(input())
     print(sol(k))

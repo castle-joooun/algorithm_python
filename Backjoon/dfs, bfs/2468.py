@@ -37,12 +37,12 @@ while True:
 
     for f in range(l):
         for y in range(r):
+            pass
 
 
+    # minutes = 0
 
-    minutes = 0
-
-    if bfs()
+    # if bfs()
 
 
 def bfs(start_node):
