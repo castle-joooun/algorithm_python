@@ -1,6 +1,7 @@
 M, N = map(int, input().split())
 
 check = [True] * (N + 1)
+check[0] = check[1] = False
 for i in range(2, N + 1):
     if check[i]:
         j = 2
@@ -10,4 +11,5 @@ for i in range(2, N + 1):
             j += 1
 
 for i in range(M, N + 1):
-    if check[i]: print(i)
+    if check[i]:
+        print(i)
