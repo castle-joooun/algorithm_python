@@ -1,15 +1,11 @@
 N = int(input())
+dp = [x for x in range(N + 1)]
 
-count = 0
-divide_num = N // 2
-while N != 0:
-    if N < 4:
-        break
+for i in range(1, N + 1):
+    for j in range(1, i):
+        if i < j * j:
+            break
+        if dp[i] > dp[i - j * j] + 1:
+            dp[i] = dp[i - j * j] + 1
 
-    if divide_num ** 2 <= N:
-        N -= (divide_num ** 2)
-        count += 1
-    else:
-        divide_num -= 1
-
-print(count + N)
+print(dp[N])
