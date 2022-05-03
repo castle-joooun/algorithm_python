@@ -1,14 +1,10 @@
 N = int(input())
 l = list(map(int, input().split()))
-dp = [0] * (N + 1)
-dp[1] = l[0]
+dp = [num for num in l]
 
-for i in range(2, N + 1):
-    for j in range(i, 0, -1):
-        if l[i - 1] > l[j - 1]:
-            dp[i] = dp[j]
-            break
-
-    dp[i] += l[i - 1]
+for i in range(1, N):
+    for j in range(i):
+        if l[i] > l[j]:
+            dp[i] = max(dp[i], dp[j] + l[i])
 
 print(max(dp))
