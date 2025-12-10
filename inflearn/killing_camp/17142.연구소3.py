@@ -5,7 +5,7 @@ from itertools import combinations
 n, m = map(int, input().split())
 data = []
 virus = []
-result = 10**8
+result = 10 ** 8
 arrows = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
 # input 받음
@@ -29,7 +29,13 @@ def possible_range(x, y):
 # bfs 확인
 def bfs(test_virus):
     queue = deque([list(test) + [0] for test in test_virus])
-    new_map = [row[::] for row in data]
+    new_map = [row[:] for row in data]
+    visited = [[False] * n for _ in range(n)]
+
+    # 활성 바이러스 위치 방문 처리
+    for x, y in test_virus:
+        visited[x][y] = True
+
     max_s = 0
 
     while queue:
@@ -37,22 +43,29 @@ def bfs(test_virus):
 
         for dx, dy in arrows:
             nx, ny = x + dx, y + dy
-            if possible_range(nx, ny) and new_map[nx][ny] == 0:
-                queue.append([nx, ny, s + 1])
-                new_map[nx][ny] = 2
-                max_s = max(s + 1, max_s)
+            if possible_range(nx, ny) and not visited[nx][ny]:
+                # 빈 칸(0) 또는 비활성 바이러스(2)로 확산
+                if new_map[nx][ny] == 0 or new_map[nx][ny] == 2:
+                    visited[nx][ny] = True
+                    queue.append([nx, ny, s + 1])
 
+                    # 원래 빈 칸(0)이었을 때만 시간 갱신
+                    if new_map[nx][ny] == 0:
+                        new_map[nx][ny] = 2
+                        max_s = s + 1
+
+    # new_map에서 0이 없는지 확인
     no_zero = all(val != 0 for row in new_map for val in row)
     if no_zero:
         return max_s
     else:
-        return 10**8
+        return 10 ** 8
 
 
 for test_combine in combines:
     result = min(bfs(test_combine), result)
 
-if result == 10**8:
+if result == 10 ** 8:
     print(-1)
 else:
     print(result)
