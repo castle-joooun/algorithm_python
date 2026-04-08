@@ -14,17 +14,19 @@ for i in range(n):
     before_col = grid[0][i]
     # check row
     for j in range(1, n):
-        if before_row == grid[i][j]:
-            row_count[-1] += 1
-        else:
-            before_row = grid[i][j]
-            row_count.append(1)
+        if m - row_count[-1] <= n - j + 1:
+            if before_row == grid[i][j]:
+                row_count[-1] += 1
+            else:
+                before_row = grid[i][j]
+                row_count.append(1)
 
-        if before_col == grid[j][i]:
-            col_count[-1] += 1
-        else:
-            before_col = grid[i][j]
-            col_count.append(1)
+        if m - col_count[-1] <= n - j + 1:
+            if before_col == grid[j][i]:
+                col_count[-1] += 1
+            else:
+                before_col = grid[j][i]
+                col_count.append(1)
 
     if max(row_count) >= m:
         answer += 1
