@@ -16,16 +16,10 @@ grid = [list(map(int, input().split())) for _ in range(n)]
 # 2일때도 그 전 값의 상하좌우. 이런식으로 커지면 될듯.
 
 # 일단 구현해보자.
-
-total_gold = sum([sum(row) for row in grid]) * m
-
 point = {0: [(0, 0)]}
 arrows = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 max_gold = 0
 for k in range(n + 1):
-    if (k ** 2) + ((k + 1) ** 2) >= total_gold:
-        break
-
     if k != 0:
         temp = set(point[k - 1])
         for x, y in point[k - 1]:
@@ -33,6 +27,7 @@ for k in range(n + 1):
                 temp.add((dx + x, dy + y))
         point[k] = list(temp)
 
+    price = (k ** 2) + ((k + 1) ** 2)
     for i in range(n):
         for j in range(n):
             gold_count = 0
@@ -41,6 +36,7 @@ for k in range(n + 1):
                 if 0 <= nx < n and 0 <= ny < n and grid[nx][ny] == 1:
                     gold_count += 1
 
-            max_gold = max(max_gold, gold_count)
+            if price <= gold_count * m:
+                max_gold = max(max_gold, gold_count)
 
 print(max_gold)
