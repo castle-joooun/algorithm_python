@@ -22,10 +22,7 @@ total_gold = sum([sum(row) for row in grid]) * m
 point = {0: [(0, 0)]}
 arrows = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 max_gold = 0
-for k in range(n - 1):
-    if (k ** 2) + ((k + 1) ** 2) >= total_gold:
-        break
-
+for k in range(n):
     if k != 0:
         temp = set(point[k - 1])
         for x, y in point[k - 1]:
@@ -41,6 +38,7 @@ for k in range(n - 1):
                 if 0 <= nx < n and 0 <= ny < n and grid[nx][ny] == 1:
                     gold_count += 1
 
-            max_gold = max(max_gold, gold_count)
+            if (k ** 2) + ((k + 1) ** 2) <= gold_count * m:
+                max_gold = max(max_gold, gold_count)
 
 print(max_gold)
