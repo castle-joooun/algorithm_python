@@ -15,56 +15,46 @@ answer = 0
 
 # 그러고 난뒤 각 블럭에 해당되는 sum을 뽑으면 될듯.
 # 뽑을때는 각 블럭에 해당되는 value를 더해주는 방식.
-
-def rotate(points):
-    # 90도 시계방향: (x, y) → (y, -x)
-    rotated = [(y, -x) for x, y in points]
-
-    # 양수 정규화
-    min_x = min(x for x, y in rotated)
-    min_y = min(y for x, y in rotated)
-
-    return [(x - min_x, y - min_y) for x, y in rotated]
-
-
 def block(x, y):
-    point_1 = [(x, y), (x, y + 1), (x + 1, y + 1)]
-    point_2 = [(x, y), (x + 1, y), (x + 2, y)]
+    block_1 = [
+        [(0, 0), (0, 1), (1, 1)],  # 원본
+        [(0, 0), (1, 0), (1, -1)],  # 90도
+        [(0, 0), (0, -1), (-1, -1)],  # 180도
+        [(0, 0), (-1, 0), (-1, 1)],  # 270도
+    ]
+    block_2 = [
+        [(0,0),(1,0),(2,0)],   # 세로
+        [(0,0),(0,1),(0,2)],   # 가로
+    ]
     max_sum = 0
 
-    for _ in range(4):
+    for check in block_1:
         is_possible = True
         temp = 0
+        for dx, dy in check:
 
-        for dx, dy in point_1:
             nx, ny = i + dx, j + dy
             if 0 <= nx < n and 0 <= ny < m:
                 temp += grid[nx][ny]
             else:
                 is_possible = False
-                break
 
-        if is_possible:
-            max_sum = max(max_sum, temp)
+            if is_possible:
+                max_sum = max(max_sum, temp)
 
-        point_1 = rotate(point_1)
-
-    for _ in range(4):
+    for check in block_2:
         is_possible = True
         temp = 0
+        for dx, dy in check:
 
-        for dx, dy in point_2:
             nx, ny = i + dx, j + dy
             if 0 <= nx < n and 0 <= ny < m:
                 temp += grid[nx][ny]
             else:
                 is_possible = False
-                break
 
-        if is_possible:
-            max_sum = max(max_sum, temp)
-
-        point_2 = rotate(point_2)
+            if is_possible:
+                max_sum = max(max_sum, temp)
 
     return max_sum
 
