@@ -6,8 +6,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         double a = sc.nextDouble(), b = sc.nextDouble(), c = sc.nextDouble();
 
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(c);
+        System.out.printf("%.3f\n", a);
+        System.out.printf("%.3f\n", b);
+        System.out.printf("%.3f", c);
     }
 }
