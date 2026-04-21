@@ -24,11 +24,20 @@ for r, oper in q:
     is_up, is_down = True, True
     for i in range(1, r):
         up_index = r - i
+        up_row = None
         if not (0 <= up_index < n):
-            is_up = 
-        down_index = r + i
-
-        for j in range(m):
+            is_up = False
+        else:
             up_row = a[up_index]
+        down_index = r + i
+        down_row = None
+        if not (0 <= down_index < n):
+            is_down = False
+        else:
+            down_row = a[down_index]
+        for j in range(m):
+            
+
+            
     
     
