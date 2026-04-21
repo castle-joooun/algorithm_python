@@ -44,21 +44,25 @@ while winds:
 
     move_value(oper, check)
 
-    now_oper = trans_wind(oper)
+    up_oper = trans_wind(oper)
     for i in range(1, n):
         if 0 <= now_index - i < n:
             if check_same(a[now_index - i + 1], a[now_index - i]):
-                move_value(now_oper, a[now_index - i])
-                now_oper = trans_wind(now_oper)
+                move_value(up_oper, a[now_index - i])
+                up_oper = trans_wind(up_oper)
+            else:
+                break
         else:
             break
 
-    now_oper = trans_wind(oper)
+    down_oper = trans_wind(oper)
     for i in range(1, n):
         if 0 <= now_index + i < n:
             if check_same(a[now_index + i - 1], a[now_index + i]):
-                move_value(now_oper, a[now_index + i])
-                now_oper = trans_wind(now_oper)
+                move_value(down_oper, a[now_index + i])
+                down_oper = trans_wind(down_oper)
+            else:
+                break
         else:
             break
 
