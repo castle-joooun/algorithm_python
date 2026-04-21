@@ -42,7 +42,7 @@ for i in range(4):
     if temp2:
         temp += temp2
     temp += [0] * (4 - len(temp))
-    if dir in ['R', 'D']:
+    if dir in ['R']:
         temp = temp[::-1]
 
     if dir in ['R', 'L']:
