@@ -13,31 +13,54 @@ N,M,Q는 100이므로 100^3
 """
 
 a = [deque(x) for x in a]
-for r, oper in q:
-    check = a[r - 1]
+winds = deque(winds)
 
+
+def check_same(origin, temp):
+    for i in range(m):
+        if origin[i] == temp[i]:
+            return True
+
+    return False
+
+
+def move_value(oper, q):
     if oper == 'L':
-        check.appendleft(check.pop())
+        q.appendleft(q.pop())
     else:
-        check.append(check.popleft())
+        q.append(q.popleft())
 
-    is_up, is_down = True, True
-    for i in range(1, r):
-        up_index = r - i
-        up_row = None
-        if not (0 <= up_index < n):
-            is_up = False
-        else:
-            up_row = a[up_index]
-        down_index = r + i
-        down_row = None
-        if not (0 <= down_index < n):
-            is_down = False
-        else:
-            down_row = a[down_index]
-        for j in range(m):
-            
 
-            
-    
-    
+def trans_wind(wind):
+    if wind == 'L':
+        return 'R'
+    return 'L'
+
+
+while winds:
+    r, oper = winds.popleft()
+    now_index = r - 1
+    check = a[now_index]
+
+    move_value(oper, check)
+
+    now_oper = trans_wind(oper)
+    for i in range(1, n):
+        if 0 <= now_index - i < n:
+            if check_same(a[now_index - i + 1], a[now_index - i]):
+                move_value(now_oper, a[now_index - i])
+                now_oper = trans_wind(now_oper)
+        else:
+            break
+
+    now_oper = trans_wind(oper)
+    for i in range(1, n):
+        if 0 <= now_index + i < n:
+            if check_same(a[now_index + i - 1], a[now_index + i]):
+                move_value(now_oper, a[now_index + i])
+                now_oper = trans_wind(now_oper)
+        else:
+            break
+
+for x in a:
+    print(' '.join(str(i) for i in x))
